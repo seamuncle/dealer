@@ -2,7 +2,7 @@ package importer
 
 import (
 	"github.com/jinzhu/gorm"
-	"github.com/seamuncle/dealer" // relative pathing would be cool, but that's not what Go does
+	"github.com/seamuncle/dealer"
 )
 
 // NewInventorySet does what it says on the box
@@ -58,7 +58,7 @@ func (set InventorySet) FullReplace(db *gorm.DB) error {
 		}
 	}
 
-	// batch up database operations based on vehicle state...
+	// run database operations based on vehicle state...
 	// The Unknowns should be inserted to dealer inventoryas they are unknown to the system
 	// The Persisteds should be deleted as have not been deemed Unaltered, which means they exist only in the DB
 	// The Altereds should be updated as there is some descrepency between the DB and the feed

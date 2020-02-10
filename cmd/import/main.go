@@ -163,7 +163,7 @@ func (i DemoImporter) LoadRecords(filename string) ([]interface{}, error) {
 // after casting it appropriately, iterates across all the headers in the record
 // --mapping each to the corresponding value and determining what it goes on a
 // dealer.Vehcile via a switch statement.  I don't even know where to start with
-// real world complexities here, but our example is naievely quite similar and a
+// real world complexities here, but our example data is naievely quite similar and a
 // simple switch with trivial error handling seemed best.
 func (i DemoImporter) ProcessRecord(record interface{}) (dealer.Vehicle, error) {
 	// This version of match is build around redord looking like
@@ -185,7 +185,7 @@ func (i DemoImporter) ProcessRecord(record interface{}) (dealer.Vehicle, error) 
 		case "DealerID":
 			dealerID, err := strconv.ParseInt(value, 10, 32)
 			if err != nil {
-				return vehicle, fmt.Errorf("Unable to parse DealerID (%s): %w", value, err)
+				return vehicle, fmt.Errorf("Parsing DealerID (%s): %w", value, err)
 			}
 			vehicle.DealerID = int(dealerID)
 
@@ -208,7 +208,7 @@ func (i DemoImporter) ProcessRecord(record interface{}) (dealer.Vehicle, error) 
 		case "Year":
 			year, err := strconv.ParseInt(value, 10, 32)
 			if err != nil {
-				return vehicle, fmt.Errorf("Unable to parse Year (%s): %w", value, err)
+				return vehicle, fmt.Errorf("Parsing Year (%s): %w", value, err)
 			}
 			vehicle.Year = int(year)
 
@@ -227,7 +227,7 @@ func (i DemoImporter) ProcessRecord(record interface{}) (dealer.Vehicle, error) 
 		case "Doors":
 			doors, err := strconv.ParseInt(value, 10, 32)
 			if err != nil {
-				return vehicle, fmt.Errorf("Unable to parse Doors (%s): %w", value, err)
+				return vehicle, fmt.Errorf("Parsing Doors (%s): %w", value, err)
 			}
 			vehicle.Doors = int(doors)
 
@@ -240,7 +240,7 @@ func (i DemoImporter) ProcessRecord(record interface{}) (dealer.Vehicle, error) 
 		case "EngCylinders":
 			cylinders, err := strconv.ParseInt(value, 10, 32)
 			if err != nil {
-				return vehicle, fmt.Errorf("Unable to parse EngCylinders (%s): %w", value, err)
+				return vehicle, fmt.Errorf("Parsing EngCylinders (%s): %w", value, err)
 			}
 			vehicle.Cylinders = int(cylinders)
 
@@ -248,7 +248,7 @@ func (i DemoImporter) ProcessRecord(record interface{}) (dealer.Vehicle, error) 
 			f := floatRegex.FindString(value)
 			displacement, err := strconv.ParseFloat(f, 64)
 			if err != nil {
-				return vehicle, fmt.Errorf("Unable to parse EngCylinders (%s): %w", value, err)
+				return vehicle, fmt.Errorf("Parsing EngCylinders (%s): %w", value, err)
 			}
 			vehicle.Displacement = displacement
 
@@ -263,7 +263,7 @@ func (i DemoImporter) ProcessRecord(record interface{}) (dealer.Vehicle, error) 
 			if len(bits) == 3 {
 				speeds, err := strconv.ParseInt(bits[1], 10, 32)
 				if err != nil {
-					return vehicle, fmt.Errorf("Unable to extract Transmission speeds (%s): %w", value, err)
+					return vehicle, fmt.Errorf("Extracting Transmission speeds (%s): %w", value, err)
 				}
 				vehicle.TransmissionSpeeds = int(speeds)
 				vehicle.TransmissionType = bits[2]
@@ -272,7 +272,7 @@ func (i DemoImporter) ProcessRecord(record interface{}) (dealer.Vehicle, error) 
 		case "Odometer":
 			odometer, err := strconv.ParseInt(value, 10, 32)
 			if err != nil {
-				return vehicle, fmt.Errorf("Unable to parse Odometer (%s): %w", value, err)
+				return vehicle, fmt.Errorf("Parsing Odometer (%s): %w", value, err)
 			}
 			vehicle.Cylinders = int(odometer)
 
@@ -280,7 +280,7 @@ func (i DemoImporter) ProcessRecord(record interface{}) (dealer.Vehicle, error) 
 			f := floatRegex.FindString(value)
 			price, err := strconv.ParseFloat(f, 64)
 			if err != nil {
-				return vehicle, fmt.Errorf("Unable to parse Price (%s): %w", value, err)
+				return vehicle, fmt.Errorf("Parsing Price (%s): %w", value, err)
 			}
 			vehicle.Price = price
 
@@ -288,7 +288,7 @@ func (i DemoImporter) ProcessRecord(record interface{}) (dealer.Vehicle, error) 
 			f := floatRegex.FindString(value)
 			msrp, err := strconv.ParseFloat(f, 64)
 			if err != nil {
-				return vehicle, fmt.Errorf("Unable to parse MSRP (%s): %w", value, err)
+				return vehicle, fmt.Errorf("Parsing MSRP (%s): %w", value, err)
 			}
 			vehicle.MSRP = msrp
 
@@ -320,12 +320,12 @@ func (i DemoImporter) ProcessRecord(record interface{}) (dealer.Vehicle, error) 
 		case "PassengerCount":
 			passengers, err := strconv.ParseInt(value, 10, 32)
 			if err != nil {
-				return vehicle, fmt.Errorf("Unable to parse PassengerCount (%s): %w", value, err)
+				return vehicle, fmt.Errorf("Parsing PassengerCount (%s): %w", value, err)
 			}
 			vehicle.Passengers = int(passengers)
 
 		default:
-			return vehicle, fmt.Errorf("Unable to process unknown heading %s' in column %d", heading, i)
+			return vehicle, fmt.Errorf("Processing unknown heading %s' in column %d", heading, i)
 		}
 	}
 

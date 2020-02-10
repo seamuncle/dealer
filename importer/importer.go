@@ -5,7 +5,7 @@ import (
 	"time"
 
 	"github.com/jinzhu/gorm"
-	"github.com/seamuncle/dealer" // relative pathing would be cool, but that's not what Go does
+	"github.com/seamuncle/dealer"
 )
 
 // Importer represents a specific understanding for importing a specific feed's data.
