@@ -7,13 +7,15 @@ Did find a balance between the two, and ultimately got something both over- and 
 That said, it compiles and builds and does everything I wanted it to.
 
 Given a lot more time, most of the code is written to be testable, and tests could be added.  
-But, in the end, Ispend a lot of time just debuggingand logging and Nothing obvious jumped out 
+But, in the end, I spent a lot of time just debugging and logging and nothing obvious jumped out 
 at me--but I can't memeber the last time I made this many assumptions about anything.
 
-Experience-wise, I haven't touched an ORM or sqllite before--both Go libraries for them proved remarkably more stable
-than I could have hoped--I did run through a couple libraries that were less helpful till I landed on these
+Experience-wise, I haven't touched an ORM or sqllite before--in the end, gorm seemed to cover both pretty well, 
+and  proved remarkably more stable than I could have hoped--I did run through a couple libraries that were less helpful
+ till I landed on this.  The gist of an ORM here is it lets us use go tags to map data more simply than manually
+ generating whatever db dialects are at play
 
-if you have a go 1.13 environment set up somewhere UNIXy, running this against the included db file
+Given a go 1.13 environment set up somewhere UNIXy, running this against the included db file
 *should be* a simple matter of:
 
 ```shell
@@ -23,6 +25,8 @@ $ go get ./...
 $ go build ./cmd/import 
 $ $GOROOT/bin/import
 ```
+
+Reminder, it will update the file. and I left the orm debugging on, so you can see how it does this.
 
 The `main.go` file lives at github.com/seamuncle/dealer/cmd/import/main.go
 
