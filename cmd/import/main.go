@@ -23,8 +23,8 @@ import (
 
 var config = importer.Config{}
 
-// main is responisble for that really high-level stuff.  
-// On errors it does log.Fatal, 
+// main is responisble for that really high-level stuff.
+// On errors it does log.Fatal,
 // It parses CLI flags and gets them where they need to go
 // It instantiates a thing I called importer and feeds it to a thing I called a runner
 func main() {

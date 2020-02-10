@@ -43,7 +43,7 @@ type FullReplaceRunner struct {
 }
 
 // Run is our heavy-lifter.  Take some cues from "big data" and apply some functional programming
-// across the data set, though we're not actually doing big data processing, and gain none of the 
+// across the data set, though we're not actually doing big data processing, and gain none of the
 // cache-consistency that result from a big-data approach.  It does leave our Importer quite testable
 // and if I had time to generate mocks and tests; this should be relatively testable as well.
 func (runner FullReplaceRunner) Run(importer Importer, db *gorm.DB) error {

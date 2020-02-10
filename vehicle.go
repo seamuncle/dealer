@@ -42,12 +42,12 @@ type Vehicle struct {
 // TableName oerrides the default table name "vehicle" for the gorm library
 func (Vehicle) TableName() string {
 	return "inventory"
-  }
+}
 
 // FeedVehicle represents the bits of the vehcile record a feed is explicitly responsible for
 // and may be modified from the feed without repcercussions
 type FeedVehicle struct {
-	VehicleKey  `gorm:"embedded"`
+	VehicleKey         `gorm:"embedded"`
 	Year               int     `gorm:"column:year"`
 	Make               string  `gorm:"column:make"`
 	Model              string  `gorm:"column:model"`

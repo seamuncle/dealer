@@ -8,7 +8,7 @@ import (
 // NewInventorySet does what it says on the box
 func NewInventorySet(lot dealer.Lot, db *gorm.DB) InventorySet {
 	set := InventorySet{
-		lot: lot,
+		lot:      lot,
 		vehicles: map[dealer.VehicleKey]dealer.Vehicle{},
 	}
 
